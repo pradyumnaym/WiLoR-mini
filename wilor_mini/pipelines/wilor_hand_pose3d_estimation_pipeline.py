@@ -62,7 +62,7 @@ class WiLorHandPose3dEstimationPipeline:
             self.logger.info(f"download wilor pretrained model {wilor_model_path} from huggingface")
             hf_hub_download(repo_id=self.WILOR_MINI_REPO_ID, subfolder="pretrained_models", filename="wilor_final.ckpt",
                             local_dir=wilor_pretrained_dir)
-        self.wilor_model.load_state_dict(torch.load(wilor_model_path)["state_dict"], strict=False)
+        self.wilor_model.load_state_dict(torch.load(wilor_model_path, weights_only=False)["state_dict"], strict=False)
         self.wilor_model.eval()
         self.wilor_model.to(self.device, dtype=self.dtype)
 
