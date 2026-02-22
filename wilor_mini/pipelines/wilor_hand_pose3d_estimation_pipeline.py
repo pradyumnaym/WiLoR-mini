@@ -72,9 +72,7 @@ class WiLorHandPose3dEstimationPipeline:
             hf_hub_download(repo_id=self.WILOR_MINI_REPO_ID, subfolder="pretrained_models", filename="detector.pt",
                             local_dir=wilor_pretrained_dir)
         self.logger.info(f"loading Yolo hand detection model >>> ")
-        self.hand_detector = YOLO(yolo_model_path)
-        self.hand_detector.to(self.device)
-
+        
     @torch.no_grad()
     def predict(self, image, **kwargs):
         self.logger.info("start hand detection >>> ")
